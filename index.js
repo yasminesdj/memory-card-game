@@ -1,21 +1,28 @@
 const containerGrid = document.querySelector(".grid-container");
-let cardArray = [];
 let firstSelection = null, secondSelection = null;
 let isBoardLocked = false;
 
-fetch("./data/cards.json")
-    .then((response) => response.json())
-    .then((cardData) => {
-        cardArray = [...cardData, ...cardData];  // Duplicate the cards
-        randomizeCards();                        // Shuffle them
-        createCards();                           // Create the card elements
-    });
+// Define card data directly
+let cardArray = [
+    { image: "./assets/agc.png", name: "agc" },
+    { image: "./assets/micro-hack.png", name: "micro-hack" },
+    { image: "./assets/micro-jam.png", name: "micro-jam" },
+    { image: "./assets/msrc.png", name: "msrc" },
+    { image: "./assets/micro-hack2.png", name: "micro-hack2" },
+    { image: "./assets/agc2.png", name: "agc2" },
+    { image: "./assets/msrc2.png", name: "msrc2" },
+    { image: "./assets/MGV.png", name: "MGV" },
+    { image: "./assets/ioc2.png", name: "ioc2" }
+];
+
+// Duplicate and shuffle cards
+cardArray = [...cardArray, ...cardArray];
+randomizeCards();
+createCards();
 
 // Function to shuffle the cards
 function randomizeCards() {
-    let currentIdx = cardArray.length,
-        randomIdx,
-        tempCard;
+    let currentIdx = cardArray.length, randomIdx, tempCard;
     while (currentIdx !== 0) {
         randomIdx = Math.floor(Math.random() * currentIdx);
         currentIdx -= 1;
